@@ -63,6 +63,7 @@ function checkMatch(card) {
   if (openedCard.length == 0) {
     openedCard.push(card);
     numberOfClicks++;
+    starRating(numberOfClicks);
     document.getElementsByClassName("moves")[0].innerHTML = numberOfClicks;
   } else {
     openedCard.push(card);
@@ -102,17 +103,18 @@ function notMatched(openedCard) {
 
 function starRating(numberOfClicks) {
   let score = 3;
-  var stars=document.getElementsByClassName("stars");
+  var star = document.getElementsByClassName("stars")[0];
+  console.log(star)
 
   if (numberOfClicks <= 18) {
     score = 3;
-  } else if ((numberOfClicks > 18) && (numberOfClicks <= 25)) {
-    stars[0].classList.remove("fa fa-star");
+  } else if (numberOfClicks ==19) {
+     var element=star.getElementsByTagName("li");
+     star.removeChild(element[0]);
     score = 2;
-  } else {
-    stars[0].classList.remove("fa fa-star");
-    stars[1].classList.remove("fa fa-star");
-
+  } else if (numberOfClicks ==30){
+    var element=star.getElementsByTagName("li");
+    star.removeChild(element[0]);
     score = 1;
   }
   return score;
